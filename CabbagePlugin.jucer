@@ -229,6 +229,30 @@
         <MODULEPATH id="juce_audio_basics" path="C:\JUCE-5.4.4\modules"/>
       </MODULEPATHS>
     </VS2019>
+    <XCODE_MAC targetFolder="Builds/MacOSX" extraDefs="MACOSX=1&#10;CABBAGE=1&#10;Cabbage_Plugin_Effect=1"
+               extraCustomFrameworks="/Library/Frameworks/CsoundLib64">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" headerPath="/Library/Frameworks/CsoundLib64.framework/Headers"
+                       customXcodeFlags="FRAMEWORK_SEARCH_PATHS=/Library/Frameworks/"/>
+        <CONFIGURATION isDebug="0" name="Release" headerPath="/Library/Frameworks/CsoundLib64.framework/Headers"
+                       customXcodeFlags="FRAMEWORK_SEARCH_PATHS=/Library/Frameworks/"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_gui_extra" path="~/JUCE_5.4.5/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="~/JUCE_5.4.5/modules"/>
+        <MODULEPATH id="juce_graphics" path="~/JUCE_5.4.5/modules"/>
+        <MODULEPATH id="juce_events" path="~/JUCE_5.4.5/modules"/>
+        <MODULEPATH id="juce_data_structures" path="~/JUCE_5.4.5/modules"/>
+        <MODULEPATH id="juce_cryptography" path="~/JUCE_5.4.5/modules"/>
+        <MODULEPATH id="juce_core" path="~/JUCE_5.4.5/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="~/JUCE_5.4.5/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="~/JUCE_5.4.5/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="~/JUCE_5.4.5/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="~/JUCE_5.4.5/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="~/JUCE_5.4.5/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="~/JUCE_5.4.5/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
   </EXPORTFORMATS>
   <MODULES>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="1"/>
