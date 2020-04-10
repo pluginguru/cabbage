@@ -4,3 +4,5 @@ Docs/markdown/Widgets/ExpandedWidgetEntries
 .vscode
 *.DS_Store
 .vs
+Debug
+Release

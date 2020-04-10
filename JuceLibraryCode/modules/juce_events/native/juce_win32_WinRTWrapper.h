@@ -130,9 +130,9 @@ private:
     bool initialised = false;
 
     typedef HRESULT (WINAPI* RoInitializeFuncPtr) (int);
-    typedef HRESULT (WINAPI* WindowsCreateStringFuncPtr) (LPCWSTR, UINT32, HSTRING*);
+    typedef HRESULT (WINAPI* WindowsCreateStringFuncPtr) (LPCWSTR, uint32_t, HSTRING*);
     typedef HRESULT (WINAPI* WindowsDeleteStringFuncPtr) (HSTRING);
-    typedef PCWSTR  (WINAPI* WindowsGetStringRawBufferFuncPtr) (HSTRING, UINT32*);
+    typedef PCWSTR  (WINAPI* WindowsGetStringRawBufferFuncPtr) (HSTRING, uint32_t*);
     typedef HRESULT (WINAPI* RoActivateInstanceFuncPtr) (HSTRING, IInspectable**);
     typedef HRESULT (WINAPI* RoGetActivationFactoryFuncPtr) (HSTRING, REFIID, void**);
 
