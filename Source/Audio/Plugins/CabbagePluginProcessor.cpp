@@ -25,41 +25,18 @@ char channelMessage[4096] = {0};
 
 AudioProcessor *JUCE_CALLTYPE
 
-createPluginFilter() {
-    File csdFile;
-#if 1
+createPluginFilter()
+{
+#if JUCE_MAC
+    File pathFile = File::getSpecialLocation(File::tempDirectory).getParentDirectory().getChildFile("Unify/cabbage_path.txt");
+#else
     File pathFile = File::getSpecialLocation(File::tempDirectory).getChildFile("cabbage_path.txt");
+#endif
     if (pathFile.existsAsFile() == false)
-        Logger::writeToLog("Could not find cabbage_path.txt!");
+        Logger::writeToLog("Could not find " + pathFile.getFullPathName());
 
     String csdPath = pathFile.loadFileAsString();
-    csdFile = File(csdPath);
-#else
-#ifdef JUCE_WINDOWS
-	CabbageUtilities::debug(JucePlugin_Manufacturer);
-    csdFile = File::getSpecialLocation(File::currentExecutableFile).withFileExtension(String(".csd")).getFullPathName();
-	if (csdFile.existsAsFile() == false)
-	{
-		String filename = "C:/ProgramData/" + String(JucePlugin_Manufacturer) + "/" + File::getSpecialLocation(File::currentExecutableFile).getFileNameWithoutExtension()+"/"+ File::getSpecialLocation(File::currentExecutableFile).withFileExtension(String(".csd")).getFileName();
-		
-		csdFile = File(filename);
-	}
-#elif JUCE_MAC
-    //read .csd file from the correct location within the .vst bundle.
-    const String dir = File::getSpecialLocation (File::currentExecutableFile).getParentDirectory().getParentDirectory().getFullPathName();
-    const String filename (File::getSpecialLocation (File::currentExecutableFile).withFileExtension (String (".csd")).getFileName());
-    csdFile = File (dir + "/" + filename);
-#else
-    CabbageUtilities::debug(JucePlugin_Manufacturer);
-    csdFile = File::getSpecialLocation(File::currentExecutableFile).withFileExtension(String(".csd")).getFullPathName();
-    if (csdFile.existsAsFile() == false)
-    {
-        String filename = "/usr/share/" + String(JucePlugin_Manufacturer) + "/" + File::getSpecialLocation(File::currentExecutableFile).getFileNameWithoutExtension()+"/"+ File::getSpecialLocation(File::currentExecutableFile).withFileExtension(String(".csd")).getFileName();
-
-        csdFile = File(filename);
-    }
-#endif
-#endif
+    File csdFile = File(csdPath);
 
 	if (csdFile.existsAsFile() == false)
 		Logger::writeToLog("Could not find " + csdPath);
