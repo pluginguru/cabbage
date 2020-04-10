@@ -27,6 +27,14 @@ AudioProcessor *JUCE_CALLTYPE
 
 createPluginFilter() {
     File csdFile;
+#if 1
+    File pathFile = File::getSpecialLocation(File::tempDirectory).getChildFile("cabbage_path.txt");
+    if (pathFile.existsAsFile() == false)
+        Logger::writeToLog("Could not find cabbage_path.txt!");
+
+    String csdPath = pathFile.loadFileAsString();
+    csdFile = File(csdPath);
+#else
 #ifdef JUCE_WINDOWS
 	CabbageUtilities::debug(JucePlugin_Manufacturer);
     csdFile = File::getSpecialLocation(File::currentExecutableFile).withFileExtension(String(".csd")).getFullPathName();
@@ -51,9 +59,10 @@ createPluginFilter() {
         csdFile = File(filename);
     }
 #endif
+#endif
 
 	if (csdFile.existsAsFile() == false)
-		Logger::writeToLog("Could not find .csd file, please make sure it's in the correct folder");
+		Logger::writeToLog("Could not find " + csdPath);
 
     const int numChannels = CabbageUtilities::getHeaderInfo(csdFile.loadFileAsString(), "nchnls");
     return new CabbagePluginProcessor(csdFile, numChannels, numChannels);
@@ -65,6 +74,7 @@ CabbagePluginProcessor::CabbagePluginProcessor(File inputFile, const int ins, co
           csdFile(inputFile),
           cabbageWidgets("CabbageWidgetData") 
 {
+    setPluginName(inputFile.getFileNameWithoutExtension());
 	createCsound(inputFile);
 }
 

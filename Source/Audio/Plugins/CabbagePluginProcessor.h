@@ -86,7 +86,8 @@ public:
     bool isWidgetPlantParent (StringArray linesFromCsd, int lineNumber);
     bool shouldClosePlant (StringArray linesFromCsd, int lineNumber);
     void setPluginName (String name) {    pluginName = name;  }
-    String getPluginName() { return pluginName;  }
+    //String getPluginName() { return pluginName;  }
+    const String getName() const override { return pluginName; }
     void expandMacroText (String &line, ValueTree wData);
 	void prepareToPlay(double sampleRate, int samplesPerBlock) override;
 	void setCabbageParameter(String channel, float value);
